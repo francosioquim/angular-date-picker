@@ -48,11 +48,15 @@
 .angular-date-picker > ._days > ._day-of-week {
     font-weight: bold;
 }
-.angular-date-picker > ._days > ._day.-padding {
+.angular-date-picker > ._days > ._day.-padding,
+.angular-date-picker > ._days > ._day.-disabled {
     opacity: .5;
 }
 .angular-date-picker > ._days > ._day {
     cursor: pointer;
+}
+.angular-date-picker > ._days > ._day.-disabled {
+    cursor: auto;
 }
 .angular-date-picker > ._days > ._day.-selected {
     background: #e0e0e0;
@@ -60,13 +64,11 @@
 .angular-date-picker > ._days > ._day.-today {
     border-color: #aaa;
 }
-.angular-date-picker > ._days > ._day.-disabled {
-    background: #f7f4f4;
-    pointer-events: none;
-    cursor: none;
-}
 .angular-date-picker > ._days > ._day:hover {
     background: #eee;
+}
+.angular-date-picker > ._days > ._day.-disabled:hover {
+    background: none;
 }
 .angular-date-picker > ._days:after {
     content: '';
