@@ -23,13 +23,13 @@
 + '<div class="angular-date-picker">'
 + '    <div class="_month">'
 + '        <button type="button" class="_previous" ng-click="changeMonthBy(-1)">&laquo;</button>'
-+ '        <span title="{{ months[month].fullName }}">{{ months[month].shortName }}</span> {{ year }}'
++ '        <span title="{{ months[month].fullName }}">{{ months[month].shortName }} </span> {{ year }}'
 + '        <button type="button" class="_next" ng-click="changeMonthBy(1)">&raquo;</button>'
 + '    </div>'
 + '    <div class="_days" ng-click="pickDay($event)">'
 + '        <div class="_day-of-week" ng-repeat="dayOfWeek in daysOfWeek" title="{{ dayOfWeek.fullName }}">{{ dayOfWeek.firstLetter }}</div>'
-+ '        <div class="_day -padding" ng-class="{\'-disabled\': preventPast}" ng-repeat="day in leadingDays" data-month-offset="-1">{{ day }}</div>'
-+ '        <div class="_day" ng-repeat="day in days" ng-class="{ \'-selected\': (day === selectedDay), \'-today\': (day === today), \'-disabled\': preventPast && disabledDays.indexOf(day) !== -1 || isMonthDisabled}">{{ day }}</div>'
++ '        <div class="_day -padding" ng-class="{\'-disabled\': preventPast && isPastMonthDisabled}" ng-repeat="day in leadingDays" data-month-offset="-1">{{ day }}</div>'
++ '        <div class="_day" ng-repeat="day in days" ng-class="{ \'-selected\': (day === selectedDay), \'-today\': (day === today), \'-disabled\': preventPast && disabledDays.indexOf(day) !== -1 && isPastMonthDisabled || isMonthDisabled }">{{ day }}</div>'
 + '        <div class="_day -padding" ng-class="{\'-disabled\': isMonthDisabled}" ng-repeat="day in trailingDays" data-month-offset="1">{{ day }}</div>' 
 + '    </div>'
 + '</div>'
@@ -75,7 +75,6 @@
                         firstLetter: day.substr(0, 1)
                     });
                 }
-
                 $scope.months = months;
                 $scope.daysOfWeek = daysOfWeek;
 
@@ -108,6 +107,7 @@
                     // Ensure a total of 6 rows to maintain height consistency
                     $scope.trailingDays = days.slice(0, 6 * 7 - (leadingDays + daysInMonth));
                     $scope.disabledDays = days.slice(0, now.getDate() - 1);
+                    $scope.isPastMonthDisabled = date.getMonth()-1  < now.getMonth() || date.getYear() < now.getYear();
                     $scope.isMonthDisabled = date.getMonth() < now.getMonth() || date.getYear() < now.getYear();
                 }
 
