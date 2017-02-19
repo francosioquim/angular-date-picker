@@ -107,8 +107,8 @@
                     // Ensure a total of 6 rows to maintain height consistency
                     $scope.trailingDays = days.slice(0, 6 * 7 - (leadingDays + daysInMonth));
                     $scope.disabledDays = days.slice(0, now.getDate() - 1);
-                    $scope.isPastMonthDisabled = date.getMonth()-1  < now.getMonth() || date.getYear() < now.getYear();
-                    $scope.isMonthDisabled = date.getMonth() < now.getMonth() || date.getYear() < now.getYear();
+                    $scope.isPastMonthDisabled = date.getMonth()-1  < now.getMonth() && date.getYear() <=  now.getYear();
+                    $scope.isMonthDisabled = date.getMonth() < now.getMonth() && date.getYear() <= now.getYear();
                 }
 
                 // Default to current year and month
