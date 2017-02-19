@@ -22,7 +22,7 @@
         var tmpl = ''
 + '<div class="angular-date-picker">'
 + '    <div class="_month">'
-+ '        <button type="button" class="_previous" ng-click="changeMonthBy(-1)">&laquo;</button>'
++ '        <button type="button" class="_previous" ng-if="!isPastMonthDisabled" ng-click="changeMonthBy(-1)">&laquo;</button>'
 + '        <span title="{{ months[month].fullName }}">{{ months[month].shortName }} </span> {{ year }}'
 + '        <button type="button" class="_next" ng-click="changeMonthBy(1)">&raquo;</button>'
 + '    </div>'
